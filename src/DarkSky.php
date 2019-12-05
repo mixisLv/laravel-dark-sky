@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: jack
- * Date: 6/13/17
- * Time: 3:26 PM
- */
 
-namespace Naughtonium\LaravelDarkSky;
-
+namespace Lawnstarter\LaravelDarkSky;
 
 class DarkSky
 {
@@ -18,6 +11,7 @@ class DarkSky
     protected $timestamp = null;
     protected $params = [];
     protected $excludeables = ['currently', 'minutely', 'hourly', 'daily', 'alerts', 'flags'];
+    protected static $testResponse = null;
 
     /**
      * DarkSky constructor.
@@ -49,6 +43,10 @@ class DarkSky
      */
     public function get()
     {
+        if (!is_null(self::$testResponse)) {
+            return self::$testResponse;
+        }
+
         $url = $this->endpoint  . '/' . $this->lat . ',' . $this->lon;
 
         if ($this->timestamp) {
@@ -140,7 +138,7 @@ class DarkSky
 
     /**
      * Filters out metadata to get only currently
-     * 
+     *
      * @return $this
      */
     public function currently()
@@ -196,5 +194,14 @@ class DarkSky
     public function flags()
     {
         return $this->includes(['flags'])->get()->flags;
+    }
+
+    /**
+     * sets the value of the test response
+     * @param $testResponse array|null the response to return or null to actually call the api
+     */
+    public static function setTestResponse($testResponse)
+    {
+        static::$testResponse = $testResponse;
     }
 }

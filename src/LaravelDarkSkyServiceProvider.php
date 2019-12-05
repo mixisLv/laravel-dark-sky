@@ -1,6 +1,6 @@
 <?php
 
-namespace Naughtonium\LaravelDarkSky;
+namespace Lawnstarter\LaravelDarkSky;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -27,8 +27,7 @@ class LaravelDarkSkyServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('darksky',function($app)
-        {
+        $this->app->singleton('darksky', function ($app) {
             return new DarkSky();
         });
     }

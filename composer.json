@@ -1,18 +1,20 @@
 {
-    "name": "naughtonium/laravel-dark-sky",
+    "name": "lawnstarter/laravel-darksky",
     "type": "library",
     "description": "Provides a Wrapper for the DarkSky API",
     "keywords": [
-        "naughtonium",
-        "laravel-dark-sky"
+        "lawnstarter",
+        "laravel",
+        "laravel-darksky",
+        "darksky"
     ],
-    "homepage": "https://github.com/naughtonium/laravel-dark-sky",
+    "homepage": "https://github.com/lawnstarter/laravel-darksky",
     "license": "MIT",
     "authors": [
         {
-            "name": "Jack Naughton",
-            "email": "jack.naughton18@gmail.com",
-            "homepage": "http://naughton.io",
+            "name": "Jonas Weigert",
+            "email": "jonas@lawnstarter.com",
+            "homepage": "https://www.lawnstarter.com",
             "role": "Developer"
         }
     ],
@@ -26,12 +28,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Naughtonium\\LaravelDarkSky\\": "src"
+            "Lawnstarter\\LaravelDarkSky\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Naughtonium\\LaravelDarkSky\\": "tests"
+            "Lawnstarter\\LaravelDarkSky\\": "tests"
         }
     },
     "scripts": {
@@ -45,10 +47,10 @@
         },
         "laravel": {
             "providers": [
-                "Naughtonium\\LaravelDarkSky\\LaravelDarkSkyServiceProvider"
+                "Lawnstarter\\LaravelDarkSky\\LaravelDarkSkyServiceProvider"
             ],
             "aliases": {
-                "DarkSky": "Naughtonium\\LaravelDarkSky\\Facades\\DarkSky"
+                "DarkSky": "Lawnstarter\\LaravelDarkSky\\Facades\\DarkSky"
             }
         }
     },
