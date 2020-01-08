@@ -1,29 +1,27 @@
 ## Laravel DarkSky
-[![Latest Stable Version](https://poser.pugx.org/naughtonium/laravel-dark-sky/v/stable)](https://packagist.org/packages/naughtonium/laravel-dark-sky)
 [![Software License][ico-license]](LICENSE.md)
-[![Total Downloads](https://poser.pugx.org/naughtonium/laravel-dark-sky/downloads)](https://packagist.org/packages/naughtonium/laravel-dark-sky)
 
-This provides a Laravel style wrapper for the DarkSky api. For more information regarding request and response formats, visit: https://darksky.net/dev/docs
-
+This provides a Laravel style wrapper for the DarkSky api and simplifies writing tests against ever changing weather data.
+For more information regarding request and response formats, visit: https://darksky.net/dev/docs
 
 ### Install
 
 Require this package with composer using the following command:
 
 ``` bash
-$ composer require naughtonium/laravel-dark-sky
+$ composer require lawnstarter/laravel-darksky
 ```
 
 In Laravel 5.5, [service providers and aliases are automatically registered](https://laravel.com/docs/6.0/packages#package-discovery). Or you may manually add the service provider and aliases in your config/app.php file.
 
 Add a new item to the `providers` array in `config/app.php`:
 ```php
-Naughtonium\LaravelDarkSky\LaravelDarkSkyServiceProvider::class,
+Lawnstarter\LaravelDarkSky\LaravelDarkSkyServiceProvider::class,
 ```
 
 Add a new item to the `aliases` array in `config/app.php`:
 ```php
-'DarkSky' => \Naughtonium\LaravelDarkSky\Facades\DarkSky::class,
+'DarkSky' => \Lawnstarter\LaravelDarkSky\Facades\DarkSky::class,
 ```
 
 ### Configuration
@@ -94,9 +92,61 @@ For example, these two statements are the same
 DarkSky::location(lat, lon)->hourly()
 DarkSky::location(lat, lon)->includes(['hourly'])->get()->hourly
 ```
+
+### DarkSky & Testing
+To simplyfiy testing the static method to force the response to be a certain payload without actually hitting the DarkSky API was added.
+
+```php
+DarkSky::setTestResponse($testResponseValue);
+```
+
+When this value is not null, the DarkSky wrapper will always return this data. If the value is null, the DarkSky API will be queried in real-time.
+To simplify testing further, sample test responses are available for you to use in your test classes
+
+```php
+<?php
+
+use Lawnstarter\LaravelDarkSky\DarkSkySampleResponse;
+use Lawnstarter\LaravelDarkSky\DarkSky;
+
+class MyTestsDependOnDarksky extends TestCase {
+
+    public function test_forecast() {
+        ...
+        $fakeForecast = DarkSkySampleResponse::forecast();
+        DarkSky::setTestResponse($fakeForecast);
+        ...
+    }
+
+    public function test_forecast_extended_hourly() {
+        ...
+        $fakeForecast = DarkSkySampleResponse::forecastExtendedHourly();
+        DarkSky::setTestResponse($fakeForecast);
+        ...
+    }
+
+    public function test_timemachine() {
+        ...
+        $fakeForecast = DarkSkySampleResponse::timemachine();
+        DarkSky::setTestResponse($fakeForecast);
+        ...
+    }
+
+}
+
+```
+
+| Method                                                | Sample Payload                                                                                                                                 |
+|-------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
+| ```DarkSkySampleResponse::forecast()```               | [See Sample Forecast JSON](https://github.com/lawnstarter/laravel-darksky/blob/master/resources/forecast.json)                                 |
+| ```DarkSkySampleResponse::forecastExtendedHourly()``` | [See Sample Forecast Extended Hourly JSON](https://github.com/lawnstarter/laravel-darksky/blob/master/resources/forecast_extended_hourly.json) |
+| ```DarkSkySampleResponse::timemachine()```            | [See Sample Time Machine JSON](https://github.com/lawnstarter/laravel-darksky/blob/master/resources/timemachine.json)                          |
+
+
+
+
 ### Credits
 
-- [Jack Naughton][link-author]
 - [All Contributors][link-contributors]
 
 ### License
@@ -104,5 +154,4 @@ DarkSky::location(lat, lon)->includes(['hourly'])->get()->hourly
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[link-author]: https://github.com/holiehandgrenade
 [link-contributors]: ../../contributors

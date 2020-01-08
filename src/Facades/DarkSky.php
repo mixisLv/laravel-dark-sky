@@ -1,5 +1,5 @@
 <?php
-namespace Naughtonium\LaravelDarkSky\Facades;
+namespace Lawnstarter\LaravelDarkSky\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

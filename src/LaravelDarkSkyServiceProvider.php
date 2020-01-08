@@ -1,6 +1,6 @@
 <?php
 
-namespace Naughtonium\LaravelDarkSky;
+namespace Lawnstarter\LaravelDarkSky;
 
 use Illuminate\Support\ServiceProvider;
 
