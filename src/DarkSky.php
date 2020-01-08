@@ -18,8 +18,8 @@ class DarkSky
      */
     public function __construct()
     {
-        $this->apiKey = config('darksky.apikey');
-        $this->endpoint = $this->endpoint . $this->apiKey;
+        $this->apiKey   = config('darksky.apikey');
+        $this->endpoint = $this->endpoint.$this->apiKey;
     }
 
     /**
@@ -33,6 +33,7 @@ class DarkSky
     {
         $this->lat = $lat;
         $this->lon = $lon;
+
         return $this;
     }
 
@@ -47,17 +48,22 @@ class DarkSky
             return self::$testResponse;
         }
 
-        $url = $this->endpoint  . '/' . $this->lat . ',' . $this->lon;
+        $url = $this->endpoint.'/'.$this->lat.','.$this->lon;
 
         if ($this->timestamp) {
-            $url .= ',' . $this->timestamp;
+            $url .= ','.$this->timestamp;
         }
 
         $client = new \GuzzleHttp\Client();
 
-        return json_decode($client->get($url, [
-            'query' => $this->params,
-        ])->getBody());
+        return json_decode(
+            $client->get(
+                $url,
+                [
+                    'query' => $this->params,
+                ]
+            )->getBody()
+        );
     }
 
     /**
@@ -69,6 +75,7 @@ class DarkSky
     public function excludes($blocks)
     {
         $this->params['exclude'] = implode(',', $blocks);
+
         return $this;
     }
 
@@ -81,6 +88,7 @@ class DarkSky
     public function includes($blocks)
     {
         $this->params['exclude'] = implode(',', array_diff($this->excludeables, $blocks));
+
         return $this;
     }
 
@@ -94,6 +102,7 @@ class DarkSky
     public function atTime($timestamp)
     {
         $this->timestamp = $timestamp;
+
         return $this;
     }
 
@@ -105,6 +114,7 @@ class DarkSky
     public function extend()
     {
         $this->params['extend'] = 'hourly';
+
         return $this;
     }
 
@@ -117,6 +127,7 @@ class DarkSky
     public function language($lang)
     {
         $this->params['lang'] = $lang;
+
         return $this;
     }
 
@@ -129,6 +140,7 @@ class DarkSky
     public function units($unit)
     {
         $this->params['units'] = $unit;
+
         return $this;
     }
 

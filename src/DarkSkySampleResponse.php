@@ -10,7 +10,7 @@ class DarkSkySampleResponse
         if ($contents === false) {
             return null;
         }
-        
+
         return json_decode($contents);
     }
 
@@ -20,7 +20,7 @@ class DarkSkySampleResponse
         if ($contents === false) {
             return null;
         }
-        
+
         return json_decode($contents);
     }
 
@@ -30,7 +30,7 @@ class DarkSkySampleResponse
         if ($contents === false) {
             return null;
         }
-        
+
         return json_decode($contents);
     }
 }
