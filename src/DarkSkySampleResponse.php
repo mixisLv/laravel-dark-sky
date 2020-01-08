@@ -6,7 +6,7 @@ class DarkSkySampleResponse
 {
     public static function forecast()
     {
-        $contents = @file_get_contents(__DIR__.'/../resources/forecast.json');
+        $contents = @file_get_contents(__DIR__ . '/../resources/forecast.json');
         if ($contents === false) {
             return null;
         }
@@ -16,7 +16,7 @@ class DarkSkySampleResponse
 
     public static function forecastExtendedHourly()
     {
-        $contents = @file_get_contents(__DIR__.'/../resources/forecast_extended_hourly.json');
+        $contents = @file_get_contents(__DIR__ . '/../resources/forecast_extended_hourly.json');
         if ($contents === false) {
             return null;
         }
@@ -26,7 +26,7 @@ class DarkSkySampleResponse
 
     public static function timemachine()
     {
-        $contents = @file_get_contents(__DIR__.'/../resources/timemachine.json');
+        $contents = @file_get_contents(__DIR__ . '/../resources/timemachine.json');
         if ($contents === false) {
             return null;
         }

@@ -19,7 +19,7 @@ class DarkSky
     public function __construct()
     {
         $this->apiKey   = config('darksky.apikey');
-        $this->endpoint = $this->endpoint.$this->apiKey;
+        $this->endpoint = $this->endpoint . $this->apiKey;
     }
 
     /**
@@ -48,10 +48,10 @@ class DarkSky
             return self::$testResponse;
         }
 
-        $url = $this->endpoint.'/'.$this->lat.','.$this->lon;
+        $url = $this->endpoint . '/' . $this->lat . ',' . $this->lon;
 
         if ($this->timestamp) {
-            $url .= ','.$this->timestamp;
+            $url .= ',' . $this->timestamp;
         }
 
         $client = new \GuzzleHttp\Client();
