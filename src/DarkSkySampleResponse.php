@@ -1,6 +1,6 @@
 <?php
 
-namespace Lawnstarter\LaravelDarkSky;
+namespace Naughtonium\LaravelDarkSky;
 
 class DarkSkySampleResponse
 {
