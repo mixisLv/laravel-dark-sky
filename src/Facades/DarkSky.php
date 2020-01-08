@@ -1,6 +1,6 @@
 <?php
 
-namespace Lawnstarter\LaravelDarkSky\Facades;
+namespace Naughtonium\LaravelDarkSky\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
