@@ -83,11 +83,12 @@ DarkSky::location(lat, lon)->extend()->get();
 #### Helpers
 The following are shorthand helpers to add readability equal to using includes() with only one parameter. Note: only one may be used per query and only temperature specific data is returned
 ```php
-->currently()
-->minutely()
-->hourly()
-->daily()
-->flags()
+$darkSky = DarkSky::location(lat, lon);
+$darkSky->currently();
+$darkSky->minutely();
+$darkSky->hourly();
+$darkSky->daily();
+$darkSky->flags();
 ```
 For example, these two statements are the same
 ```php
